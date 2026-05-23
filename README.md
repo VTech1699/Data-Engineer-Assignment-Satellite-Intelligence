@@ -4,7 +4,7 @@ This repository contains my solution to the Carnot Data Engineer take‑home ass
 The project demonstrates how to ingest messy field data (sensor readings, satellite indices, weather feeds, and farm metadata), perform a structured **data quality audit**, build a **cleaning pipeline**, run a **quick NDVI analysis**, and reflect on **production readiness**.  
 
 Deliverables include:
-- A reproducible Jupyter notebook and script for the pipeline
+- A reproducible Python script for the pipeline
 - The cleaned dataset (`cleaned_parcel_timeseries.csv`)
 - A detailed README (audit, pipeline, analysis, reflection)
 - A Loom walkthrough video explaining key decisions
@@ -90,6 +90,6 @@ If scaled to run **daily** on a dataset 100× larger:
 - **Code:** Python script + quick_analysis.  
 - **Output:** `cleaned_parcel_timeseries.csv`.  
 - **README:** Audit, pipeline approach, analysis, reflection.  
-- **Loom video:** 5–10 min walkthrough of code, decisions, and reflection.
+- **Loom video:** 5–10 min walkthrough of code, decisions, and reflection. https://www.loom.com/share/d49f1f53614e43938d145b1cd929c33f
 
 ---
