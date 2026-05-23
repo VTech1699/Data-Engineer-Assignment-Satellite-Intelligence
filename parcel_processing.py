@@ -94,34 +94,34 @@ deleted_rows = readings[readings.duplicated(subset=['parcel_id','date'], keep='f
 print("Rows that will be deleted:")
 print(deleted_rows)
 
-# # Define priority: OK > ERROR > NA
-# status_priority = {"OK": 1, "ERROR": 2, "NA": 3}
-# # Map sensor_status to rank
-# readings['status_rank'] = readings['sensor_status'].map(status_priority)
+# Define priority: OK > ERROR > NA
+status_priority = {"OK": 1, "ERROR": 2, "NA": 3}
+# Map sensor_status to rank
+readings['status_rank'] = readings['sensor_status'].map(status_priority)
 
-# # Sort by parcel/date and rank
-# readings = readings.sort_values(['parcel_id','date','status_rank'])
-# readings.to_csv("readings_sorted.csv", index=False)
+# Sort by parcel/date and rank
+readings = readings.sort_values(['parcel_id','date','status_rank'])
+readings.to_csv("readings_sorted.csv", index=False)
 # Drop duplicates, keeping the best-ranked row (OK if available)
-# readings = readings.drop_duplicates(subset=['parcel_id','date'], keep='first')
+readings = readings.drop_duplicates(subset=['parcel_id','date'], keep='first')
 
-# Keep only OK sensor_status rows
-readings_ok = readings[readings['sensor_status'] == "OK"].copy()
+# # Keep only OK sensor_status rows
+# readings_ok = readings[readings['sensor_status'] == "OK"].copy()
 
-# Group by parcel/date and take mean of numeric columns
-readings = (
-    readings_ok
-    .groupby(['parcel_id','date'], as_index=False)
-    .agg({
-        'ndvi_value':'mean',
-        'temperature_c':'mean',
-        'rainfall_mm':'mean',
-        'sensor_status':'first'  # always "OK" here
-    })
-)
+# # Group by parcel/date and take mean of numeric columns
+# readings = (
+#     readings_ok
+#     .groupby(['parcel_id','date'], as_index=False)
+#     .agg({
+#         'ndvi_value':'mean',
+#         'temperature_c':'mean',
+#         'rainfall_mm':'mean',
+#         'sensor_status':'first'  # always "OK" here
+#     })
+# )
 
 # Remove helper column
-# readings = readings.drop(columns=['status_rank'])
+readings = readings.drop(columns=['status_rank'])
 
 print(f"AFTER Reading Rows: {len(readings)}, Columns: {len(readings.columns)}")
 
